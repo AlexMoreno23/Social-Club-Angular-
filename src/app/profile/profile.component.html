@@ -1,0 +1,31 @@
+<br>
+<br>
+<mat-card>
+<form (submit)="editForm()" role="form">
+  <mat-form-field appearance="fill">
+    <mat-label for="firstName">firstName</mat-label>
+    <input matInput [(ngModel)]="user.firstName"
+           class="form-control" id="firstName" name="firstName"
+           type="text" pattern="[A-Za-zА-Яа-яЁё]+" required #firstnameField="ngModel"/>
+  </mat-form-field>
+  <br>
+  <div [hidden]="!firstnameField.errors?.required || !firstnameField.touched" class="danger">
+    Firstname is required field
+  </div>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label for="lastName">lastname</mat-label>
+    <input matInput [(ngModel)]="user.lastName"
+           class="form-control" id="lastName" name="lastName"
+           type="text" pattern="[A-Za-zА-Яа-яЁё]+" required #lastnameField="ngModel"/>
+  </mat-form-field>
+  <br>
+  <div [hidden]="!lastnameField.errors?.required || !lastnameField.touched" class="danger">
+    Lastname is required field
+  </div>
+  <br>
+
+  <br>
+  <button mat-raised-button color="primary" type="submit">Update</button>
+</form>
+</mat-card>

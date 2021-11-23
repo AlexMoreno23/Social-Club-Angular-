@@ -1,0 +1,17 @@
+<div [hidden]="!error" class="danger">
+  {{error}}
+</div>
+<br>
+<form (submit)="addClub()" role="form">
+  <mat-form-field appearance="fill">
+    <mat-label for="nameTeam">Name Team</mat-label>
+    <input matInput [(ngModel)]="club.nameTeam"
+           class="form-control" id="nameTeam" name="nameTeam"
+           type="text" required #nameTeamField="ngModel"/>
+  </mat-form-field>
+  <br>
+  <div [hidden]="!nameTeamField.errors?.required || !nameTeamField.touched" class="danger">
+    name team is required field
+  </div>
+  <button mat-raised-button color="primary" type="submit">Add Team</button>
+</form>

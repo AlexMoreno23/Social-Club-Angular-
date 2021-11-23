@@ -1,0 +1,15 @@
+<div *ngIf="user" class="main-div">
+  <div *ngFor="let friend of friends" >
+    <mat-card class="user-card">
+      <mat-card-header>
+        <mat-card-title>{{friend.firstName}}</mat-card-title>
+        <mat-card-title>{{friend.lastName}}</mat-card-title>
+        <mat-card-subtitle>
+          Favorite Team:{{friend.team.nameTeam | json}}
+        </mat-card-subtitle>
+        <button mat-raised-button color="primary" type="submit" >Add Friends</button>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+</div>

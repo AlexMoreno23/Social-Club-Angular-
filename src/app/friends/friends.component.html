@@ -1,0 +1,12 @@
+<div *ngIf="user" class="main-div">
+  <p>{{user.id}}</p>
+  <div *ngFor="let friend of user.friends" >
+    <mat-card class="user-card">
+      <mat-card-header>
+        <mat-card-title>{{friend.firstName}}</mat-card-title>
+      </mat-card-header>
+      <button mat-raised-button color="warn" type="submit">Remove from friends</button>
+    </mat-card>
+  </div>
+
+</div>

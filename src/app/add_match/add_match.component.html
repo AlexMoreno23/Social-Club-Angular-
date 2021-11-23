@@ -1,0 +1,30 @@
+<form (submit)="addMatch()" role="form">
+  <form>
+    <h4>Add match</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>First team</mat-label>
+      <mat-select [(ngModel)]="match.team1" name="match">
+        <mat-option *ngFor="let club of clubs" [value]="club">
+          {{club.nameTeam}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Second team</mat-label>
+      <mat-select [(ngModel)]="match.team2" name="match">
+        <mat-option *ngFor="let club of clubs" [value]="club">
+          {{club.nameTeam}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Date Of Match</mat-label>
+    <input type="date"  matInput [(ngModel)]="match.dateOfMatch"
+           id="dateOfMatch" name="dateOfMatch">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Add Match</button>
+</form>
+
+

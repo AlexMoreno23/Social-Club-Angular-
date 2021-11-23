@@ -1,0 +1,49 @@
+<div *ngIf="!authenticated()">
+<div [hidden]="!error" class="danger">
+  There was a problem logging in: "{{error}}". Please try again.
+</div>
+<br>
+
+<form (submit)="login()" role="form">
+  <mat-form-field appearance="fill">
+    <mat-label for="username" >Username</mat-label>
+    <input matInput [(ngModel)]="credentials.username"
+           class="form-control" id="username" name="username"
+           type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #usernameField="ngModel"/>
+  </mat-form-field>
+  <br>
+  <div [hidden]="!usernameField.errors?.required || !usernameField.touched" class="danger">
+    Username is required field
+  </div>
+  <div [hidden]="!usernameField.errors?.pattern" class="danger">
+    Username should contain only latin letters, numbers or underscore
+  </div>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label for="password">Password</mat-label>
+    <input matInput [(ngModel)]="credentials.password"
+           class="form-control" id="password" name="password"
+           type="password" pattern="[\w&*%$#!]+" minlength="8" required #passwordField="ngModel"/>
+  </mat-form-field>
+  <br>
+  <div [hidden]="!passwordField.errors?.required || !passwordField.touched" class="danger">
+    Password is required field
+  </div>
+  <div [hidden]="!passwordField.errors?.minlength" class="danger">
+    Password should be at least 8 symbols long
+  </div>
+  <br>
+  <button mat-raised-button color="primary" type="submit">
+    Submit
+  </button>
+  <br>
+  <br>
+  <div>
+    <a [routerLink]="['/registration']" >Registration</a>
+  </div>
+  <br>
+  <div>
+    <a href="{{apiUrl}}/oauth2/authorization/google">Login with Google</a>
+  </div>
+</form>
+</div>

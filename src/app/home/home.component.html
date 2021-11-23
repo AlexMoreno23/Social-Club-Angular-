@@ -1,0 +1,76 @@
+<div [hidden]="!error" class="danger">
+  {{error}}
+</div>
+<div *ngIf="authenticated()">
+
+  <div *ngIf="user" class="main-div">
+    <mat-card class="card">
+      <mat-grid-list [cols]="3" rowHeight="40px">
+        <mat-grid-tile colspan="1">
+          <a mat-button color="primary" *ngIf="user.roles == 'ADMIN'" [routerLink]="['/add-add_team']">
+            <mat-icon> border_color</mat-icon>
+            Add team</a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+          <a mat-button color="primary" *ngIf="user.roles == 'ADMIN'" [routerLink]="['/add_match']">
+            <mat-icon> border_color</mat-icon>
+            Add match</a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+          <a mat-button color="primary" *ngIf="user.roles == 'ADMIN'" [routerLink]="['/add_ticket']">
+            <mat-icon> border_color</mat-icon>
+            Add ticket</a>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <br>
+      <br>
+      <mat-card>
+        <mat-card-title>{{user.firstName}}</mat-card-title>
+        <mat-card-title>{{user.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{user.roles}}</mat-card-subtitle>
+        <mat-card-title>{{user.email}}</mat-card-title>
+        <mat-card-title>Balance: {{user.balance}}$</mat-card-title>
+
+        <mat-card-actions>
+          <button mat-raised-button matTooltip="Edit profile" color="accent" *ngIf="authenticated()"
+                  [routerLink]="['/profile']">edit
+          </button>
+        </mat-card-actions>
+        <mat-card-actions>
+          <button mat-raised-button matTooltip="Friends" color="accent" *ngIf="authenticated()"
+                  [routerLink]="['/friends']">My Friends
+          </button>
+        </mat-card-actions>
+        <mat-card-actions>
+          <button mat-raised-button matTooltip="Add news" color="accent" *ngIf="authenticated()" [routerLink]="'/news'">
+            Add News
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-card>
+  </div>
+  <br>
+  <br>
+
+
+  <div>
+    <div *ngFor="let news of allNews">
+      <mat-card class="news-card">
+        <mat-card-header>
+          <mat-card-title>{{news.title}}</mat-card-title>
+          <mat-card-subtitle>
+            <a href="/user">Author:{{news.author.firstName | json}}</a>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            {{news.text}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>

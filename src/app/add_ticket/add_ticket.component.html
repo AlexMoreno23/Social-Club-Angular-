@@ -1,0 +1,26 @@
+<div [hidden]="!error" class="danger">
+  {{error}}
+</div>
+<form (submit)="addTicket()" role="form">
+  <form>
+    <h4>Add Ticket</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Match</mat-label>
+      <mat-select [(ngModel)]="match" name="match">
+        <mat-option *ngFor="let match of matches" [value]="match">
+          {{match.team1.nameTeam | json}} vs {{match.team2.nameTeam | json}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <br>
+    <br>
+      <mat-form-field appearance="fill">
+        <mat-label for="price">Price</mat-label>
+        <input matInput [(ngModel)]="ticket.price"
+               class="form-control" id="price" name="price"
+               type="number" min="0"/>
+      </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add Ticket</button>
+</form>
